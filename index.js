@@ -13,7 +13,10 @@ const port = process.env.PORT || 5000;
 //   .catch((err) => console.log(err));
 // // Since mongoose's Promise is deprecated, we override it with Node's Promise
 // mongoose.Promise = global.Promise;
-mongo.MongoClient.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongo.MongoClient
+  .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Database connected successfully!'))
+  .catch((err) => console.err(err));
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
 //   // perform actions on the collection object
